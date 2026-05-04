@@ -1,78 +1,56 @@
-# 🚀 Terraform AWS Infrastructure
+# 🏗️ Terraform Templates
 
-Plantilla de Terraform para desplegar infraestructura básica en AWS con una EC2 pública lista para usar.
-
----
-
-## Arquitectura
-Internet
-│
-▼
-Internet Gateway
-│
-▼
-VPC (10.0.0.0/16)
-│
-▼
-Subnet Pública (10.0.1.0/24)
-│
-▼
-EC2 t3.micro (IP pública)
-│
-Security Group → Puerto 80 abierto
+Colección de plantillas de Terraform para desplegar infraestructura en AWS de forma rápida y reutilizable.
 
 ---
 
-## Recursos desplegados
-
-| Recurso | Nombre | Descripción |
-|---|---|---|
-| VPC | `mi-vpc` | Red privada `10.0.0.0/16` |
-| Internet Gateway | `mi-igw` | Salida a internet |
-| Route Table | `mi-rt` | Enruta tráfico al IGW |
-| Subnet | `mi-subnet` | Subred pública `10.0.1.0/24` |
-| Security Group | `gs-ec2` | Permite tráfico HTTP (80) |
-| EC2 Instance | `learn-terraform` | `t3.micro` con IP pública |
+## 📁 Estructura del repositorio
+terraform-templates/
+│
+├── vpc/                  # VPC con subnets y routing
+├── ec2/                  # Instancias EC2 con IP pública
+├── security-groups/      # Security groups reutilizables
+└── ...
 
 ---
 
-## Requisitos
+## ☁️ Proveedor
+
+- **Cloud:** AWS
+- **Región por defecto:** `us-east-1`
+
+---
+
+## ⚙️ Requisitos
 
 - [Terraform](https://www.terraform.io/downloads) >= 1.0
 - [AWS CLI](https://aws.amazon.com/cli/) configurado
-- Credenciales AWS con permisos EC2/VPC
-- Key pair `vockey` creado en AWS
+- Credenciales AWS activas
 
 ---
 
-## Uso
+## 🚀 Cómo usar una plantilla
 
 ```bash
-# 1. Inicializar Terraform
+# 1. Clona el repositorio
+git clone https://github.com/franefun/terraform-templates.git
+cd terraform-templates/<plantilla>
+
+# 2. Inicializa Terraform
 terraform init
 
-# 2. Ver los cambios antes de aplicar
+# 3. Revisa los cambios
 terraform plan
 
-# 3. Desplegar la infraestructura
+# 4. Despliega
 terraform apply
 
-# 4. Destruir todo cuando acabes
+# 5. Destruye cuando acabes
 terraform destroy
 ```
 
 ---
 
-## Seguridad
+## 👤 Autor
 
-Este repositorio usa `.gitignore` para evitar subir archivos sensibles:
-.terraform/
-terraform.tfstate
-terraform.tfstate.backup
-*.tfvars
-
----
-
-## Región
-
-`us-east-1` — Norte de Virginia
+**Fran Ferrer** — [@franefun](https://github.com/franefun)
